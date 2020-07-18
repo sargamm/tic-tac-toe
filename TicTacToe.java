@@ -19,7 +19,7 @@ public class TicTacToe {
 
         boolean turn = false;
 
-        while(Board.hasMoves(x)!=0 || Board.value(x)!=15 || Board.value(x)!=-15) {
+        while(Board.hasMoves(x)!=0 && Board.value(x)!=15 && Board.value(x)!=-15) {
             if(turn) {
                 int moveC = Player.getOptimalMove(x);
                 System.out.println(moveC);
