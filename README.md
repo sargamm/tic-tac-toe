@@ -18,3 +18,6 @@ To run the application use:
 ```bash
 npm start
 ```
+
+# Implementing Minimax algorithm
+TicTacToe is the main driver class
