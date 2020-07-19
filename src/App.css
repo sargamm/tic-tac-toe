@@ -2,6 +2,7 @@
   text-align: center;
   overflow-x: hidden;
   min-height: 100vh;
+  background-color: rgba(0,0,0);
 }
 .Game{
   min-height: 100vh;
@@ -9,17 +10,28 @@
 .GamePanel{
   /* min-height: 100%; */
   height: 100%;
-  background-color: bisque;
-  padding: 12%;
+  background-color:#d8235a;
   margin: 0 5%;
   /* margin-bottom: 10%; */
 }
-.GameArea{
+.Panel{
+  margin: auto;
+}
+.GamePanelArea{
   display: flex;
   vertical-align: middle;
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  background-color: rgb(0, 0, 0);
+}
+.GameBoardArea{
+  display: flex;
+  vertical-align: middle;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
 }
 .Board{
   margin: auto;
@@ -29,20 +41,18 @@
   position: relative;
   width: 19vh;
   height: 19vh;
-  margin: 1px;
-  /* outline-style: solid;
-  outline-width: 2px; */
-  /* outline-color: black; */
+  margin: 3px;
   display: flex;
   vertical-align: middle;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  background-color:black;
+  background-color: #1f1f25;
   cursor: pointer;
 }
 .TileContent{
-  font-size: 10vh;
+  font-size: 12vh;
   margin: auto;
-  color: white;
+  font-weight: 900;
+  font-family: 'Varela Round', sans-serif;
 }
