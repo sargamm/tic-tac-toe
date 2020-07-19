@@ -60,8 +60,9 @@ function getOptimalMove(board){
 
     let moves = nextMove(board);
 
-    for(let pos in moves){
-        let possibleMove = [...board];
+    for(let i=0;i<moves.length;i++){
+        let pos=moves[i]
+        let possibleMove=[...board]
         possibleMove[pos] = 'X';
 
         let score = minimax(possibleMove, 0, false);
@@ -89,9 +90,11 @@ function minimax(curr, depth, isMax){
     if(isMax){
         let best = -15;
         let successors = nextMove(curr);
-        console.log(curr+"xxx")
-        for(let pos in successors){
-            let possibility = [...curr];
+        // console.log(curr+"xxx")
+        for(let i=0;i<successors.length;i++){
+            let pos=successors[i];
+            // console.log(pos+"pos")
+            let possibility=[...curr]
             possibility[pos] = 'X';
             best = Math.max(best, minimax(possibility, depth+1, !isMax));
             if(best==15)
@@ -102,9 +105,10 @@ function minimax(curr, depth, isMax){
     else{
         let best = 15;
         let successors = nextMove(curr);
-        console.log(curr+"ooo")
-        for(let pos in successors){
-            let possibility = [...curr];
+        // console.log(curr+"ooo")
+        for(let i=0;i<successors.length;i++){
+            let pos=successors[i];
+            let possibility=[...curr]
             possibility[pos] = 'O';
             best = Math.min(best, minimax(possibility, depth+1, !isMax));
 

@@ -13,21 +13,23 @@ class Board extends Component{
     }
     handleClick(i){
         if(this.state.tiles[i]==null){
-        let tilesNew=[...this.state.tiles]
-        tilesNew[i]='O'
-        if(hasMoves(this.state.tiles)!=0 && value(this.state.tiles)!=15 && value(this.state.tiles)!=-15){
-            let moveC = getOptimalMove(tilesNew)
-            tilesNew[moveC] = 'X';
-        }
-        this.setState((prev)=>({
-            tiles:tilesNew,
-        }))
+            let tilesNew=[...this.state.tiles]
+            tilesNew[i]='O'
+            if(hasMoves(this.state.tiles)!=0 && value(this.state.tiles)!=15 && value(this.state.tiles)!=-15){
+                console.log(tilesNew)
+                let moveC = getOptimalMove([...tilesNew])
+                tilesNew[moveC] = 'X';
+                console.log(i+" "+moveC)
+                this.setState({
+                    tiles:tilesNew
+                })
+            }
         }
     }
 
     render(){
         return(
-               <div className='this.state.tiles'>
+               <div className='Board'>
                     <Col>
                         <Row>
                             <Tile value={this.state.tiles[0]} onClick={()=>this.handleClick(0)}/>
