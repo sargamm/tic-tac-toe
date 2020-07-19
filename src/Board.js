@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
 import Tile from './Tile'
 import {Col,Row, Container} from 'react-bootstrap'
+import { getOptimalMove, hasMoves, value } from './Minimax';
 
 class Board extends Component{
     constructor(props){
         super(props);
         this.state={
             tiles:Array(9).fill(null),
-            fillNext:'O'
+            // fillNext:'O'
         }
     }
     handleClick(i){
         if(this.state.tiles[i]==null){
-        let tilesNew=this.state.tiles
-        tilesNew[i]=this.state.fillNext
+        let tilesNew=[...this.state.tiles]
+        tilesNew[i]='O'
+        if(hasMoves(this.state.tiles)!=0 && value(this.state.tiles)!=15 && value(this.state.tiles)!=-15){
+            let moveC = getOptimalMove(tilesNew)
+            tilesNew[moveC] = 'X';
+        }
         this.setState((prev)=>({
             tiles:tilesNew,
-            fillNext:prev.fillNext=='O'?'X':'O'
         }))
         }
     }
+
     render(){
         return(
-               <div className='Board'>
+               <div className='this.state.tiles'>
                     <Col>
                         <Row>
                             <Tile value={this.state.tiles[0]} onClick={()=>this.handleClick(0)}/>
