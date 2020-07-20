@@ -9,7 +9,7 @@ class Game extends Component{
         this.state={
             // NextMove:1
             Difficulty:1,
-            Starter:1
+            starter:1
         }
     }
     // SetNextMove() {
@@ -18,10 +18,15 @@ class Game extends Component{
     //     }))
     // }
     setDifficulty(i){
-        console.log(i)
+        this.setState({
+            Difficulty:i
+        })
     }
     setStarter(i){
-        console.log(i)
+        console.log(this.state.starter)
+        this.setState({
+            starter:i
+        })
     }
     render(){
         return(
@@ -30,8 +35,8 @@ class Game extends Component{
                     <Col lg={4} md={12} className="GamePanelArea">
                         <GamePanel setDifficulty={(i)=>this.setDifficulty(i)} setstarter={(i)=>this.setStarter(i)}/>
                     </Col>
-                    <Col lg={8} md={12} className="GameBoardArea" Depth={this.state.Difficulty} Starter={this.state.Starter}>
-                        <Board />
+                    <Col lg={8} md={12} className="GameBoardArea" >
+                        <Board depth={this.state.Difficulty} starter={this.state.starter}/>
                     </Col>
                 </Row>
             </div>

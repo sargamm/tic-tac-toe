@@ -5,18 +5,35 @@ import { getOptimalMove, hasMoves, value } from './Minimax';
 
 class Board extends Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state={
             tiles:Array(9).fill(null)
         }
     }
+    componentDidUpdate(){
+        let f=0
+        for(let i=0;i<9;i++){
+            if(this.state.tiles[i]!==null)
+                f=1
+        }
+        if(this.props.starter===2 && f!=1){
+            console.log("eq")
+            let x=Math.floor(Math.random()*8)
+            let tilesNew=[...this.state.tiles]
+            tilesNew[x]='X'
+            this.setState({
+                tiles:tilesNew
+            })
+        }
+    }
     handleClick(i){
-        if(this.state.tiles[i]==null){
+        if(this.state.tiles[i]===null){
             let tilesNew=[...this.state.tiles]
             tilesNew[i]='O'
-            if(hasMoves(this.state.tiles)!=0 && value(this.state.tiles)!=15 && value(this.state.tiles)!=-15){
+            console.log(this.props.depth+"depth")
+            if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15){
                 console.log(tilesNew)
-                let moveC = getOptimalMove([...tilesNew], this.props.Depth)
+                let moveC = getOptimalMove([...tilesNew], this.props.depth)
                 tilesNew[moveC] = 'X';
                 console.log(i+" "+moveC)
                 this.setState({

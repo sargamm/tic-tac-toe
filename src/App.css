@@ -61,6 +61,11 @@
   font-weight: 900;
   font-family: 'Varela Round', sans-serif;
 }
+.panelElement{
+  margin: auto;
+  padding: 3% 0;
+}
 .panelText{
   color: white;
+  /* margin: 10px; */
 }
