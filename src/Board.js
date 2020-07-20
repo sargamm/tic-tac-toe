@@ -7,8 +7,7 @@ class Board extends Component{
     constructor(props){
         super(props);
         this.state={
-            tiles:Array(9).fill(null),
-            // fillNext:'O'
+            tiles:Array(9).fill(null)
         }
     }
     handleClick(i){
@@ -17,7 +16,7 @@ class Board extends Component{
             tilesNew[i]='O'
             if(hasMoves(this.state.tiles)!=0 && value(this.state.tiles)!=15 && value(this.state.tiles)!=-15){
                 console.log(tilesNew)
-                let moveC = getOptimalMove([...tilesNew])
+                let moveC = getOptimalMove([...tilesNew], this.props.Depth)
                 tilesNew[moveC] = 'X';
                 console.log(i+" "+moveC)
                 this.setState({

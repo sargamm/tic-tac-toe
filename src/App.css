@@ -10,19 +10,24 @@
 .GamePanel{
   /* min-height: 100%; */
   height: 100%;
-  background-color:#d8235a;
+  background-color:#1f1f25;
   margin: 0 5%;
+  display: flex;
+  vertical-align: middle;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
   /* margin-bottom: 10%; */
 }
 .Panel{
   margin: auto;
 }
 .GamePanelArea{
-  display: flex;
+  /* display: flex;
   vertical-align: middle;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
+  justify-content: center; */
   background-color: rgb(0, 0, 0);
 }
 .GameBoardArea{
@@ -55,4 +60,7 @@
   margin: auto;
   font-weight: 900;
   font-family: 'Varela Round', sans-serif;
+}
+.panelText{
+  color: white;
 }
