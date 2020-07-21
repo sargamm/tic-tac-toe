@@ -12,7 +12,7 @@ class Game extends Component{
             Difficulty:1,
             starter:1,
             Player:1,
-            HintsLeft:4
+            
         }
     }
     handleChange(event){
@@ -20,20 +20,13 @@ class Game extends Component{
         this.setState({
             [name]:value
         })
-        // console.log()
+        console.log(value)
     }
     render(){
         return(
             <>
             <div className="Game">
-                <Row style={{height:"100vh"}}>
-                    <Col lg={4} md={12} className="GamePanelArea">
-                        <GamePanel handleChange={(event)=>this.handleChange(event)} />
-                    </Col>
-                    <Col lg={8} md={12} className="GameBoardArea" >
-                        <Board depth={this.state.Difficulty} starter={this.state.starter} Player={this.state.Player}/>
-                    </Col>
-                </Row>
+                <Board/>
             </div>
             </>
         )
