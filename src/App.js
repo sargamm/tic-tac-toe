@@ -6,6 +6,8 @@ import GamePanel from './GamePanel'
 import Board from './Board'
 import Game from './Game'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './NavBar';
+import Home from './Home';
 
 class App extends Component {
   constructor(){
@@ -14,6 +16,7 @@ class App extends Component {
   render(){
     return (
         <div className="App">
+          <NavBar/>
           <Game />
         </div>
       );
