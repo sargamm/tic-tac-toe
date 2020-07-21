@@ -24,7 +24,7 @@ class GamePanel extends Component{
             <div className="GamePanel">
                 <div className="Panel">
                     <Row>
-                    <ToggleButtonGroup type="radio" name="Player" size="lg"className="panelElement" >
+                    <ToggleButtonGroup type="radio" name="player" size="lg"className="panelElement" >
                         <ToggleButton variant="info" value={1} onChange={this.handleChange} checked={this.state.Player==1} defaultChecked >Single Player</ToggleButton>
                         <ToggleButton variant="info" value={2} onChange={this.handleChange} checked={this.state.Player==2}>Multi Player</ToggleButton>
                     </ToggleButtonGroup>
@@ -35,7 +35,7 @@ class GamePanel extends Component{
                         <h2 className="panelText panelElement">Difficulty</h2>
                     </Row>
                     <Row>
-                        <ToggleButtonGroup type="radio" name="difficulty" defaultValue={1} size="lg" className="panelElement">
+                        <ToggleButtonGroup type="radio" name="depth" defaultValue={1} size="lg" className="panelElement">
                             <ToggleButton variant="info" value={1} onChange={this.props.handleChange}>1</ToggleButton>
                             <ToggleButton variant="info" value={2} onChange={this.props.handleChange}>2</ToggleButton>
                             <ToggleButton variant="info" value={3} onChange={this.props.handleChange}>3</ToggleButton>
@@ -47,7 +47,7 @@ class GamePanel extends Component{
                         <h2 className="panelText panelElement">Who starts?</h2>
                     </Row>
                     <Row>
-                        <ToggleButtonGroup type="radio" name="start" defaultValue={1} size="lg"className="panelElement">
+                        <ToggleButtonGroup type="radio" name="starter" defaultValue={1} size="lg" className="panelElement">
                             <ToggleButton variant="info" value={1} onChange={this.props.handleChange}>Human</ToggleButton>
                             <ToggleButton variant="info" value={2} onChange={this.props.handleChange}>Computer</ToggleButton>
                         </ToggleButtonGroup>

@@ -8,17 +8,21 @@ class Board extends Component{
     constructor(props){
         super(props)
         this.state={
-            tiles:Array(9).fill(null)
+            tiles:Array(9).fill(null),
+            player: 1, //multiplayer or single player
+            depth:1,
+            starter:1 //who starts
         }
     }
     componentDidUpdate(){
+        // console.log(this.state.starter)
         let f=0
         for(let i=0;i<9;i++){
             if(this.state.tiles[i]!==null)
                 f=1
         }
-        if(this.props.starter===2 && f!=1){
-            console.log("eq")
+        if(this.state.starter==2 && f!=1){
+            // console.log("eq")
             let x=Math.floor(Math.random()*8)
             let tilesNew=[...this.state.tiles]
             tilesNew[x]='X'
@@ -31,7 +35,7 @@ class Board extends Component{
         if(this.state.tiles[i]===null){
             let tilesNew=[...this.state.tiles]
             tilesNew[i]='O'
-            console.log(this.props.depth+"depth")
+            // console.log(this.state.depth+"depth")
             if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15){
                 console.log(tilesNew)
                 let moveC = getOptimalMove([...tilesNew], 'X')
