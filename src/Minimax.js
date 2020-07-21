@@ -1,35 +1,35 @@
 function value(board){
     //check rows
     for(let i=0; i<=6; i+=3){
-        if(board[i]==board[i+1] && board[i]==board[i+2]){
-            if(board[i]=='X')
+        if(board[i]===board[i+1] && board[i]===board[i+2]){
+            if(board[i]==='X')
                 return 15;
-            else if(board[i]=='O')
+            else if(board[i]==='O')
                 return -15;
         }
     }
 
     //check columns
     for(let i=0; i<3; i++){
-        if(board[i]==board[i+3] && board[i]==board[i+6]){
-            if(board[i]=='X')
+        if(board[i]===board[i+3] && board[i]===board[i+6]){
+            if(board[i]==='X')
                 return 15;
-            else if(board[i]=='O')
+            else if(board[i]==='O')
                 return -15;
         }
     }
 
     //check diagnols
-    if(board[0]==board[4] && board[0]==board[8]){
-        if(board[0]=='X')
+    if(board[0]===board[4] && board[0]===board[8]){
+        if(board[0]==='X')
             return 15;
-        else if(board[0]=='O')
+        else if(board[0]==='O')
             return -15;
     }
-    else if(board[2]==board[4] && board[2]==board[6]){
-        if(board[2]=='X')
+    else if(board[2]===board[4] && board[2]===board[6]){
+        if(board[2]==='X')
             return 15;
-        else if(board[2]=='O')
+        else if(board[2]==='O')
             return -15;
     }
 
@@ -56,7 +56,7 @@ function nextMove(board){
 }
 
 function getOptimalMove(board, player){
-    if(player=='X'){
+    if(player==='X'){
         let bestScore = -15;
         let depth = Number.MAX_SAFE_INTEGER;
         let move = -1;
@@ -73,7 +73,7 @@ function getOptimalMove(board, player){
             let score = ans[0]
             let dpos = ans[1]
 
-            if(score==bestScore && dpos<depth){
+            if(score===bestScore && dpos<depth){
                 bestScore = score;
                 depth = dpos;
                 move = pos;
@@ -88,7 +88,7 @@ function getOptimalMove(board, player){
         }
 
         return move;
-    }else if(player=='O'){
+    }else if(player==='O'){
         let bestScore = 15;
         let depth = Number.MAX_SAFE_INTEGER;
         let move = -1;
@@ -105,7 +105,7 @@ function getOptimalMove(board, player){
             let score = ans[0]
             let dpos = ans[1]
 
-            if(score==bestScore && dpos<depth){
+            if(score===bestScore && dpos<depth){
                 bestScore = score;
                 depth = dpos;
                 move = pos;
@@ -125,10 +125,10 @@ function getOptimalMove(board, player){
 
 function minimax(curr, depth, isMax){
     let score = [value(curr), depth];
-    if(score[0]==15 || score[0]==-15)
+    if(score[0]===15 || score[0]===-15)
         return score;
     
-    if(hasMoves(curr)==0)
+    if(hasMoves(curr)===0)
         return score;
 
     if(isMax){
@@ -146,7 +146,7 @@ function minimax(curr, depth, isMax){
             if(val[0]>best){
                 best = val[0];
                 dis = val[1];
-            }else if(val[0]==best && val[1]<dis){
+            }else if(val[0]===best && val[1]<dis){
                 best = val[0];
                 dis = val[1];
             }
@@ -169,7 +169,7 @@ function minimax(curr, depth, isMax){
             if(val[0]<best){
                 best = val[0];
                 dis = val[1];
-            }else if(val[0]==best && val[1]<dis){
+            }else if(val[0]===best && val[1]<dis){
                 best = val[0];
                 dis = val[1];
             }
