@@ -54,41 +54,86 @@ function nextMove(board){
 
     return newStates;
 }
-function getOptimalMove(board){
-    let bestScore = -15;
-    let move = -1;
 
-    let moves = nextMove(board);
+function getOptimalMove(board, player){
+    if(player=='X'){
+        let bestScore = -15;
+        let depth = Number.MAX_SAFE_INTEGER;
+        let move = -1;
 
-    for(let i=0;i<moves.length;i++){
-        let pos=moves[i]
-        let possibleMove=[...board]
-        possibleMove[pos] = 'X';
+        let moves = nextMove(board);
 
-        let score = minimax(possibleMove, 0, false);
+        for(let i=0;i<moves.length;i++){
+            let pos=moves[i]
+            let possibleMove=[...board]
+            possibleMove[pos] = 'X';
 
-        if(score>bestScore){
-            bestScore = score;
-            move = pos;
+            let ans = minimax(possibleMove, 0, false);
+
+            let score = ans[0]
+            let dpos = ans[1]
+
+            if(score==bestScore && dpos<depth){
+                bestScore = score;
+                depth = dpos;
+                move = pos;
+            }else if(score>bestScore){
+                bestScore = score;
+                depth = dpos;
+                move = pos;
+            }
+
+            // if(bestScore==15)
+            //     return move;
         }
 
-        if(bestScore==15)
-            return move;
-    }
+        return move;
+    }else if(player=='O'){
+        let bestScore = 15;
+        let depth = Number.MAX_SAFE_INTEGER;
+        let move = -1;
 
-    return move;
+        let moves = nextMove(board);
+
+        for(let i=0;i<moves.length;i++){
+            let pos=moves[i]
+            let possibleMove=[...board]
+            possibleMove[pos] = 'O';
+
+            let ans = minimax(possibleMove, 0, true);
+
+            let score = ans[0]
+            let dpos = ans[1]
+
+            if(score==bestScore && dpos<depth){
+                bestScore = score;
+                depth = dpos;
+                move = pos;
+            }else if(score<bestScore){
+                bestScore = score;
+                depth = dpos;
+                move = pos;
+            }
+
+            // if(bestScore==15)
+            //     return move;
+        }
+
+        return move;
+    }
 }
 
 function minimax(curr, depth, isMax){
-    let score = value(curr);
-    if(score==15 || score==-15)
+    let score = [value(curr), depth];
+    if(score[0]==15 || score[0]==-15)
         return score;
     
     if(hasMoves(curr)==0)
-        return 0;
+        return score;
 
     if(isMax){
         let best = -15;
+        let dis = Number.MAX_SAFE_INTEGER;
         let successors = nextMove(curr);
         // console.log(curr+"xxx")
         for(let i=0;i<successors.length;i++){
@@ -96,26 +141,45 @@ function minimax(curr, depth, isMax){
             // console.log(pos+"pos")
             let possibility=[...curr]
             possibility[pos] = 'X';
-            best = Math.max(best, minimax(possibility, depth+1, !isMax));
-            if(best==15)
-                break;
+
+            let val = minimax(possibility, depth+1, !isMax);
+            if(val[0]>best){
+                best = val[0];
+                dis = val[1];
+            }else if(val[0]==best && val[1]<dis){
+                best = val[0];
+                dis = val[1];
+            }
+
+            // best = Math.max(best, minimax(possibility, depth+1, !isMax));
         }
-        return best;
+        return [best, dis];
     }
     else{
         let best = 15;
+        let dis = Number.MAX_SAFE_INTEGER;
         let successors = nextMove(curr);
         // console.log(curr+"ooo")
         for(let i=0;i<successors.length;i++){
             let pos=successors[i];
             let possibility=[...curr]
             possibility[pos] = 'O';
-            best = Math.min(best, minimax(possibility, depth+1, !isMax));
 
-            if(best==-15)
-                break;
+            let val = minimax(possibility, depth+1, !isMax);
+            if(val[0]<best){
+                best = val[0];
+                dis = val[1];
+            }else if(val[0]==best && val[1]<dis){
+                best = val[0];
+                dis = val[1];
+            }
+
+            // best = Math.min(best, minimax(possibility, depth+1, !isMax));
+
+            // if(best==-15)
+            //     break;
         }
-        return best;
+        return [best,dis];
     }
 }
 
