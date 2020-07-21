@@ -59,7 +59,7 @@ class GamePanel extends Component{
                     <h2 className="panelText panelElement">Hints?</h2>
                 </Row>
                 <Row>
-                    <Button variant="info" size="lg" className="panelElement panelText"  style={{paddingTop:"5px"}}>Hint</Button>
+                    <Button variant="info" size="lg" className="panelElement panelText" style={{paddingTop:"5px"}}>Hint</Button>
                 </Row>
                 </div>
             }
