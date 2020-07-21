@@ -33,7 +33,7 @@ class Board extends Component{
             console.log(this.props.depth+"depth")
             if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15){
                 console.log(tilesNew)
-                let moveC = getOptimalMove([...tilesNew], this.props.depth)
+                let moveC = getOptimalMove([...tilesNew], 'X')
                 tilesNew[moveC] = 'X';
                 console.log(i+" "+moveC)
                 this.setState({

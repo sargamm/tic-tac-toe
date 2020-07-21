@@ -69,3 +69,8 @@
   color: white;
   /* margin: 10px; */
 }
+.Home{
+  background-image: linear-gradient(to left,black);
+  background-size: cover;
+  height: 100vh;
+}

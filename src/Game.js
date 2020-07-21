@@ -1,45 +1,41 @@
 import React, { Component } from 'react'
-import { Col, Row, ListGroup } from 'react-bootstrap'
+import { Col, Row, ListGroup, ToggleButtonGroup, ToggleButton } from 'react-bootstrap'
 import Board from './Board'
 import GamePanel from './GamePanel'
-
+import Home from './Home'
+// import { value } from './Minimax'
 class Game extends Component{
     constructor(){
         super()
         this.state={
             // NextMove:1
             Difficulty:1,
-            starter:1
+            starter:1,
+            Player:1,
+            HintsLeft:4
         }
     }
-    // SetNextMove() {
-    //     this.setState((prev)=>({
-    //         NextMove:prev.NextMove==1?2:1
-    //     }))
-    // }
-    setDifficulty(i){
+    handleChange(event){
+        const {name,value}=event.target
         this.setState({
-            Difficulty:i
+            [name]:value
         })
-    }
-    setStarter(i){
-        console.log(this.state.starter)
-        this.setState({
-            starter:i
-        })
+        // console.log()
     }
     render(){
         return(
+            <>
             <div className="Game">
                 <Row style={{height:"100vh"}}>
                     <Col lg={4} md={12} className="GamePanelArea">
-                        <GamePanel setDifficulty={(i)=>this.setDifficulty(i)} setstarter={(i)=>this.setStarter(i)}/>
+                        <GamePanel handleChange={(event)=>this.handleChange(event)} />
                     </Col>
                     <Col lg={8} md={12} className="GameBoardArea" >
-                        <Board depth={this.state.Difficulty} starter={this.state.starter}/>
+                        <Board depth={this.state.Difficulty} starter={this.state.starter} Player={this.state.Player}/>
                     </Col>
                 </Row>
             </div>
+            </>
         )
     }
 }
