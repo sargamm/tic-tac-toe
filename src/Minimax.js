@@ -35,6 +35,30 @@ function value(board){
 
     return 0;
 }
+
+function winner(board){
+    //check rows
+    for(let i=0; i<=6; i+=3){
+        if(board[i]===board[i+1] && board[i]===board[i+2]){
+            return [i, i+1, i+2];
+        }
+    }
+
+    //check columns
+    for(let i=0; i<3; i++){
+        if(board[i]===board[i+3] && board[i]===board[i+6]){
+            return [i, i+3, i+6];
+        }
+    }
+
+    //check diagnols
+    if(board[0]===board[4] && board[0]===board[8]){
+        return [0, 4, 8];
+    }
+    else if(board[2]===board[4] && board[2]===board[6]){
+        return [2, 4, 6];
+    }
+}
 function hasMoves(board){
     let count = 0;
     for(let i=0; i<9; i++){
