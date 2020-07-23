@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Tile from './Tile'
 import {Col,Row, Container} from 'react-bootstrap'
-import { getOptimalMove, hasMoves, value } from './Minimax';
+import { getOptimalMove, hasMoves, value ,winner} from './Minimax';
 import GamePanel from './GamePanel';
 
 class Board extends Component{
@@ -32,19 +32,35 @@ class Board extends Component{
     }
     handleClick(i){
         if(this.state.tiles[i]===null){
+            let f=0
             let tilesNew=[...this.state.tiles]
             tilesNew[i]='O'
             this.setState({
                 starter:'O'
             })
+            let win_tiles
             if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15){
-                console.log(tilesNew)
-                let moveC = getOptimalMove([...tilesNew], 'X',this.state.depth)
-                tilesNew[moveC] = 'X';
+                win_tiles=winner(tilesNew)
+                if(win_tiles[0]==-1){
+                    let moveC = getOptimalMove([...tilesNew], 'X',this.state.depth)
+                    tilesNew[moveC] = 'X';
+                }
+                else{
+                    f=1
+                }
                 this.setState({
                     tiles:tilesNew,
                     starter:'X'
                 })
+            }
+            if(f!=1)
+                win_tiles=winner(tilesNew)
+            if(win_tiles[0]>-1){
+                let X = document.getElementsByClassName("Tile");
+                for(let i=0;i<3;i++){
+                    let col=tilesNew[win_tiles[0]]=='O'?"#d8235a":"#5bc0de"
+                    X[win_tiles[i]].style.outline="5px solid "+col
+                }
             }
         }
     }
@@ -70,6 +86,11 @@ class Board extends Component{
             tiles:Array(9).fill(null),
             starter:'O'
         })
+        let X = document.getElementsByClassName("Tile");
+        for(let i=0;i<9;i++){
+            X[i].style.outline="none"
+        }
+            
     }
     render(){
         return(

@@ -39,25 +39,26 @@ function value(board){
 function winner(board){
     //check rows
     for(let i=0; i<=6; i+=3){
-        if(board[i]===board[i+1] && board[i]===board[i+2]){
+        if(board[i]===board[i+1] && board[i]===board[i+2] && board[i]!=null){
             return [i, i+1, i+2];
         }
     }
 
     //check columns
     for(let i=0; i<3; i++){
-        if(board[i]===board[i+3] && board[i]===board[i+6]){
+        if(board[i]===board[i+3] && board[i]===board[i+6] && board[i]!=null){
             return [i, i+3, i+6];
         }
     }
 
     //check diagnols
-    if(board[0]===board[4] && board[0]===board[8]){
+    if(board[0]===board[4] && board[0]===board[8] && board[0]!=null){
         return [0, 4, 8];
     }
-    else if(board[2]===board[4] && board[2]===board[6]){
+    else if(board[2]===board[4] && board[2]===board[6] && board[2]!=null){
         return [2, 4, 6];
     }
+    return[-1,-1,-1]
 }
 function hasMoves(board){
     let count = 0;
@@ -210,4 +211,4 @@ function minimax(curr, depth, isMax, maxDepth){
     }
 }
 
-export {getOptimalMove,value,hasMoves}
+export {getOptimalMove,value,hasMoves,winner}
