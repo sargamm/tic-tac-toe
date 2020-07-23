@@ -123,8 +123,10 @@ function getOptimalMove(board, player){
     }
 }
 
-function minimax(curr, depth, isMax){
+function minimax(curr, depth, isMax, maxDepth){
     let score = [value(curr), depth];
+    if(depth===maxDepth)
+        return score;
     if(score[0]===15 || score[0]===-15)
         return score;
     
