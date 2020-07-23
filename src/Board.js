@@ -11,8 +11,10 @@ class Board extends Component{
             tiles:Array(9).fill(null),
             player: 1, //multiplayer or single player
             depth:9,
-            starter:'O' //who starts
+            nextSymbol:'O' //who starts
         }
+        this.handleClickMultiPlayer=this.handleClickMultiPlayer.bind(this)
+        this.handleClickSinglePlayer=this.handleClickSinglePlayer.bind(this)
     }
     componentDidUpdate(){
         let f=0
@@ -20,24 +22,28 @@ class Board extends Component{
             if(this.state.tiles[i]!==null)
                 f=1
         }
-        if(this.state.starter=='X' && f!=1){
+        if(this.state.nextSymbol=='X' && f!=1){
             let x=Math.floor(Math.random()*8)
             let tilesNew=[...this.state.tiles]
             tilesNew[x]='X'
             this.setState({
                 tiles:tilesNew,
-                starter:'X'
+                nextSymbol:'X'
             })
         }
     }
     handleClick(i){
+        if(this.state.player==1){
+            this.handleClickSinglePlayer(i)
+        }
+        else
+            this.handleClickMultiPlayer(i)
+    }
+    handleClickSinglePlayer(i){
         if(this.state.tiles[i]===null){
             let f=0
             let tilesNew=[...this.state.tiles]
             tilesNew[i]='O'
-            this.setState({
-                starter:'O'
-            })
             let win_tiles
             if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15){
                 win_tiles=winner(tilesNew)
@@ -49,8 +55,7 @@ class Board extends Component{
                     f=1
                 }
                 this.setState({
-                    tiles:tilesNew,
-                    starter:'X'
+                    tiles:tilesNew
                 })
             }
             if(f!=1)
@@ -64,9 +69,28 @@ class Board extends Component{
             }
         }
     }
+    handleClickMultiPlayer(i){
+        if(this.state.tiles[i]===null){
+            let tilesNew=[...this.state.tiles]
+            tilesNew[i]=this.state.nextSymbol
+            if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15)
+                this.setState((prev)=>({
+                    tiles:tilesNew,
+                    nextSymbol:prev.nextSymbol=='O'?'X':'O'
+                }))
+            let win_tiles=winner(tilesNew)
+            if(win_tiles[0]>-1){
+                let X = document.getElementsByClassName("Tile");
+                for(let i=0;i<3;i++){
+                    let col=tilesNew[win_tiles[0]]=='O'?"#d8235a":"#5bc0de"
+                    X[win_tiles[i]].style.outline="5px solid "+col
+                }
+            }
+        }
+    }
     showHint(){
         if(hasMoves(this.state.tiles)!=0 && value(this.state.tiles)!=15 && value(this.state.tiles)!=-15){
-            let hint = getOptimalMove(this.state.tiles, this.state.starter, this.state.depth);
+            let hint = getOptimalMove(this.state.tiles, this.state.nextSymbol, this.state.depth);
             let X = document.getElementsByClassName("Tile");
             X[hint].style.backgroundColor="#d8235a"
             setTimeout(() => {
@@ -79,12 +103,14 @@ class Board extends Component{
         this.setState({
             [name]:value
         })
-        console.log(value)
+        if(name==="player"){
+            this.NewGame()
+        }
     }
     NewGame(){
         this.setState({
             tiles:Array(9).fill(null),
-            starter:'O'
+            nextSymbol:'O'
         })
         let X = document.getElementsByClassName("Tile");
         for(let i=0;i<9;i++){

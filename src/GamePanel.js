@@ -13,8 +13,6 @@ class GamePanel extends Component{
         this.setState({
             [name]:value
         })
-        console.log(value)
-        console.log(this.state.Player)
         this.props.handleChange(event)
     }
     render()
@@ -49,7 +47,7 @@ class GamePanel extends Component{
                                 <p className="panelText panelElement">Who starts?</p>
                             </Row>
                             <Row>
-                                <ToggleButtonGroup type="radio" name="starter" defaultValue={"O"} size="md" className="panelElement">
+                                <ToggleButtonGroup type="radio" name="nextSymbol" defaultValue={"O"} size="md" className="panelElement">
                                     <ToggleButton variant="outline-info" value="O" onChange={this.props.handleChange}>Human</ToggleButton>
                                     <ToggleButton variant="outline-info" value="X" onChange={this.props.handleChange}>Computer</ToggleButton>
                                 </ToggleButtonGroup>
