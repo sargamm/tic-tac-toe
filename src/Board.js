@@ -15,14 +15,12 @@ class Board extends Component{
         }
     }
     componentDidUpdate(){
-        // console.log(this.state.starter)
         let f=0
         for(let i=0;i<9;i++){
             if(this.state.tiles[i]!==null)
                 f=1
         }
         if(this.state.starter=='X' && f!=1){
-            // console.log("eq")
             let x=Math.floor(Math.random()*8)
             let tilesNew=[...this.state.tiles]
             tilesNew[x]='X'
@@ -39,12 +37,10 @@ class Board extends Component{
             this.setState({
                 starter:'O'
             })
-            // console.log(this.state.depth+"depth")
             if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15){
                 console.log(tilesNew)
                 let moveC = getOptimalMove([...tilesNew], 'X',this.state.depth)
                 tilesNew[moveC] = 'X';
-                console.log(i+" "+moveC)
                 this.setState({
                     tiles:tilesNew,
                     starter:'X'
@@ -60,8 +56,6 @@ class Board extends Component{
             setTimeout(() => {
                 X[hint].style.backgroundColor="#1f1f25"
             }, 1000);
-            // let ar = window.setInterval(function change(){ X[hint].Style.backgroundColor = "green"; }, 20);
-            // clearInterval(ar);
         }
     }
     handleChange(event){

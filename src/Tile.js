@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import Game from './Game.js'
-import game from './Board.js'
+import React from 'react'
 
 function Tile(props) {
     let Ostyle={color:"#d8235a"}
