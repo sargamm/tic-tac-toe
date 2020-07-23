@@ -42,7 +42,7 @@ class GamePanel extends Component{
                     <span aria-hidden="true" onClick={this.CloseMenu}>&times;</span>
                 </button></Row> */}
                     <Row>
-                    <Button variant="outline-info" size="md" className="panelText panelElement" style={{marginBottom:"5px"}} >New Game</Button>
+                    <Button variant="outline-info" size="md" className="panelText panelElement" style={{marginBottom:"5px"}} onClick={this.props.NewGame} >New Game</Button>
                     <ToggleButtonGroup type="radio" name="player" size="md"className="panelElement" defaultValue={1} >
                         <ToggleButton variant="outline-info" value={1} onChange={this.handleChange} checked={this.state.Player==1} >Single Player</ToggleButton>
                         <ToggleButton variant="outline-info" value={2} onChange={this.handleChange} checked={this.state.Player==2}>Multi Player</ToggleButton>
@@ -55,12 +55,12 @@ class GamePanel extends Component{
                                 
                             </Row>
                             <Row>
-                                <ToggleButtonGroup type="radio" name="depth" defaultValue={1} size="md" className="panelElement">
+                                <ToggleButtonGroup type="radio" name="depth" defaultValue={9} size="md" className="panelElement">
                                     <ToggleButton variant="outline-info" value={1} onChange={this.props.handleChange} >1</ToggleButton>
                                     <ToggleButton variant="outline-info" value={2} onChange={this.props.handleChange}>2</ToggleButton>
                                     <ToggleButton variant="outline-info" value={3} onChange={this.props.handleChange}>3</ToggleButton>
                                     <ToggleButton variant="outline-info" value={4} onChange={this.props.handleChange}>4</ToggleButton>
-                                    <ToggleButton variant="outline-info" value={-1} onChange={this.props.handleChange}>Maximum</ToggleButton>
+                                    <ToggleButton variant="outline-info" value={9} onChange={this.props.handleChange}>Maximum</ToggleButton>
                                 </ToggleButtonGroup>
                             </Row>
                             <Row>
@@ -68,18 +68,15 @@ class GamePanel extends Component{
                             </Row>
                             <Row>
                                 <ToggleButtonGroup type="radio" name="starter" defaultValue={"O"} size="md" className="panelElement">
-                                    <ToggleButton variant="outline-info" value="O" onChange={this.props.handleChange} defaultChecked>Human</ToggleButton>
+                                    <ToggleButton variant="outline-info" value="O" onChange={this.props.handleChange}>Human</ToggleButton>
                                     <ToggleButton variant="outline-info" value="X" onChange={this.props.handleChange}>Computer</ToggleButton>
                                 </ToggleButtonGroup>
                             </Row>
-                        <Row>
-                            <Button variant="outline-info" size="md" className="panelElement panelText" onClick={this.props.showHint}>Hint</Button>
-                        </Row>
                         </div>:<></>
                     }
-                    {/* <Row>
-                        <Button variant="outline-info" size="md" className="panelText panelElement" >New Game</Button>
-                    </Row> */}
+                    <Row>
+                        <Button variant="outline-info" size="md" className="panelElement panelText" onClick={this.props.showHint} style={{marginTop:"5px"}}>Hint</Button>
+                    </Row>
                 </div>
             </div>
             </>

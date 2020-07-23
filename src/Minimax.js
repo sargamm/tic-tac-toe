@@ -55,7 +55,7 @@ function nextMove(board){
     return newStates;
 }
 
-function getOptimalMove(board, player){
+function getOptimalMove(board, player,maxDepth){
     if(player==='X'){
         let bestScore = -15;
         let depth = Number.MAX_SAFE_INTEGER;
@@ -68,7 +68,7 @@ function getOptimalMove(board, player){
             let possibleMove=[...board]
             possibleMove[pos] = 'X';
 
-            let ans = minimax(possibleMove, 0, false);
+            let ans = minimax(possibleMove, 0, false,maxDepth);
 
             let score = ans[0]
             let dpos = ans[1]
@@ -100,7 +100,7 @@ function getOptimalMove(board, player){
             let possibleMove=[...board]
             possibleMove[pos] = 'O';
 
-            let ans = minimax(possibleMove, 0, true);
+            let ans = minimax(possibleMove, 0, true,maxDepth);
 
             let score = ans[0]
             let dpos = ans[1]
@@ -124,9 +124,10 @@ function getOptimalMove(board, player){
 }
 
 function minimax(curr, depth, isMax, maxDepth){
+    // console.log(depth+"*"+maxDepth)
     let score = [value(curr), depth];
-    if(depth===maxDepth)
-        return score;
+    if(depth==maxDepth)
+       return score
     if(score[0]===15 || score[0]===-15)
         return score;
     
@@ -144,7 +145,7 @@ function minimax(curr, depth, isMax, maxDepth){
             let possibility=[...curr]
             possibility[pos] = 'X';
 
-            let val = minimax(possibility, depth+1, !isMax);
+            let val = minimax(possibility, depth+1, !isMax,maxDepth);
             if(val[0]>best){
                 best = val[0];
                 dis = val[1];
@@ -167,7 +168,7 @@ function minimax(curr, depth, isMax, maxDepth){
             let possibility=[...curr]
             possibility[pos] = 'O';
 
-            let val = minimax(possibility, depth+1, !isMax);
+            let val = minimax(possibility, depth+1, !isMax,maxDepth);
             if(val[0]<best){
                 best = val[0];
                 dis = val[1];
