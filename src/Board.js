@@ -42,7 +42,7 @@ class Board extends Component{
             // console.log(this.state.depth+"depth")
             if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15){
                 console.log(tilesNew)
-                let moveC = getOptimalMove([...tilesNew], 'X')
+                let moveC = getOptimalMove([...tilesNew], 'X',this.state.depth)
                 tilesNew[moveC] = 'X';
                 console.log(i+" "+moveC)
                 this.setState({
@@ -56,8 +56,12 @@ class Board extends Component{
         if(hasMoves(this.state.tiles)!=0 && value(this.state.tiles)!=15 && value(this.state.tiles)!=-15){
             let hint = getOptimalMove(this.state.tiles, this.state.starter, this.state.depth);
             let X = document.getElementsByClassName("Tile");
-            let ar = window.setInterval(function change(){ X[hint].Style.backgroundColor = "green"; }, 20);
-            clearInterval(ar);
+            X[hint].style.backgroundColor="#d8235a"
+            setTimeout(() => {
+                X[hint].style.backgroundColor="#1f1f25"
+            }, 1000);
+            // let ar = window.setInterval(function change(){ X[hint].Style.backgroundColor = "green"; }, 20);
+            // clearInterval(ar);
         }
     }
     handleChange(event){
@@ -67,13 +71,18 @@ class Board extends Component{
         })
         console.log(value)
     }
-
+    NewGame(){
+        this.setState({
+            tiles:Array(9).fill(null),
+            starter:'O'
+        })
+    }
     render(){
         return(
                <div className='Game'>
                    <Row style={{height:"100vh"}}>
                    <Col lg={4} md={12} className="GamePanelArea">
-                       <GamePanel handleChange={(event)=>this.handleChange(event)} showHint={()=>this.showHint()}/>
+                       <GamePanel handleChange={(event)=>this.handleChange(event)} showHint={()=>this.showHint()} NewGame={()=>this.NewGame()}/>
                    </Col>
                     <Col lg={8} md={12} className="GameBoardArea">
                         <div className='Board'>
