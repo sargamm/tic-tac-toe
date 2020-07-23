@@ -10,8 +10,8 @@ class Board extends Component{
         this.state={
             tiles:Array(9).fill(null),
             player: 1, //multiplayer or single player
-            depth:1,
-            starter:1 //who starts
+            depth:9,
+            starter:'O' //who starts
         }
     }
     componentDidUpdate(){
@@ -21,13 +21,14 @@ class Board extends Component{
             if(this.state.tiles[i]!==null)
                 f=1
         }
-        if(this.state.starter==2 && f!=1){
+        if(this.state.starter=='X' && f!=1){
             // console.log("eq")
             let x=Math.floor(Math.random()*8)
             let tilesNew=[...this.state.tiles]
             tilesNew[x]='X'
             this.setState({
-                tiles:tilesNew
+                tiles:tilesNew,
+                starter:'X'
             })
         }
     }
@@ -35,6 +36,9 @@ class Board extends Component{
         if(this.state.tiles[i]===null){
             let tilesNew=[...this.state.tiles]
             tilesNew[i]='O'
+            this.setState({
+                starter:'O'
+            })
             // console.log(this.state.depth+"depth")
             if(hasMoves(this.state.tiles)!==0 && value(this.state.tiles)!==15 && value(this.state.tiles)!==-15){
                 console.log(tilesNew)
@@ -42,9 +46,18 @@ class Board extends Component{
                 tilesNew[moveC] = 'X';
                 console.log(i+" "+moveC)
                 this.setState({
-                    tiles:tilesNew
+                    tiles:tilesNew,
+                    starter:'X'
                 })
             }
+        }
+    }
+    showHint(){
+        if(hasMoves(this.state.tiles)!=0 && value(this.state.tiles)!=15 && value(this.state.tiles)!=-15){
+            let hint = getOptimalMove(this.state.tiles, this.state.starter, this.state.depth);
+            let X = document.getElementsByClassName("Tile");
+            let ar = window.setInterval(function change(){ X[hint].Style.backgroundColor = "green"; }, 20);
+            clearInterval(ar);
         }
     }
     handleChange(event){
@@ -60,7 +73,7 @@ class Board extends Component{
                <div className='Game'>
                    <Row style={{height:"100vh"}}>
                    <Col lg={4} md={12} className="GamePanelArea">
-                       <GamePanel handleChange={(event)=>this.handleChange(event)}/>
+                       <GamePanel handleChange={(event)=>this.handleChange(event)} showHint={()=>this.showHint()}/>
                    </Col>
                     <Col lg={8} md={12} className="GameBoardArea">
                         <div className='Board'>
