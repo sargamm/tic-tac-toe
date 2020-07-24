@@ -102,7 +102,11 @@ function getOptimalMove(board, player,maxDepth){
                 bestScore = score;
                 depth = dpos;
                 move = pos;
-            }else if(score>bestScore){
+            }else if(score===bestScore && dpos>depth && score<15){
+                move=pos;
+                depth=dpos;
+            }
+            else if(score>bestScore){
                 bestScore = score;
                 depth = dpos;
                 move = pos;
@@ -134,6 +138,9 @@ function getOptimalMove(board, player,maxDepth){
                 bestScore = score;
                 depth = dpos;
                 move = pos;
+            }else if(score===bestScore && dpos>depth && score<15){
+                move=pos;
+                depth=dpos;
             }else if(score<bestScore){
                 bestScore = score;
                 depth = dpos;
