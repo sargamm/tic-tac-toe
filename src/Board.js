@@ -110,8 +110,7 @@ class Board extends Component{
     }
     NewGame(){
         this.setState({
-            tiles:Array(9).fill(null),
-            nextSymbol:'O'
+            tiles:Array(9).fill(null)
         })
         let X = document.getElementsByClassName("Tile");
         for(let i=0;i<9;i++){

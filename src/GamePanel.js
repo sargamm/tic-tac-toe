@@ -32,7 +32,7 @@ function GamePanel(props)
                                 <p className="panelText panelElement">Who starts?</p>
                             </Row>
                             <Row>
-                                <ToggleButtonGroup type="radio" name="nextSymbol" size="md" className="panelElement"  defaultValue={props.board.nextSymbol}>
+                                <ToggleButtonGroup type="radio" name="nextSymbol" size="md" className="panelElement" defaultValue={props.board.nextSymbol}>
                                     <ToggleButton variant="outline-info" value="O" onChange={props.handleChange} >Human</ToggleButton>
                                     <ToggleButton variant="outline-info" value="X" onChange={props.handleChange} >Computer</ToggleButton>
                                 </ToggleButtonGroup>
