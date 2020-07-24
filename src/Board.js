@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Tile from './Tile'
-import {Col,Row, Container} from 'react-bootstrap'
+import {Col,Row} from 'react-bootstrap'
 import { getOptimalMove, hasMoves, value ,winner} from './Minimax';
 import GamePanel from './GamePanel';
 
