@@ -7,8 +7,8 @@ function GamePanel(props)
             
             <div className="GamePanel .d-none " id="GamePanel">
                 <div className="Panel" id="Panel">
-                    <Row>
-                        <Button variant="outline-info" size="md" className="panelText panelElement" style={{marginBottom:"5px"}} onClick={props.NewGame} >New Game</Button>
+                    <Row className="mx-auto">
+                        <Button variant="outline-info" size="md" className="panelText panelElement" onClick={props.NewGame} >New Game</Button>
                         <ToggleButtonGroup type="radio" name="player" size="md"className="panelElement" defaultValue={props.board.player}>
                             <ToggleButton variant="outline-info" type="radio" value={1} onChange={props.handleChange} >Single Player</ToggleButton>
                             <ToggleButton variant="outline-info" type="radio" value={2} onChange={props.handleChange} >Multi Player</ToggleButton>
