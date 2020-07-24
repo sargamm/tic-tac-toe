@@ -17,18 +17,19 @@
   text-align: center;
   justify-content: center;
   overflow-x: hidden;
-  width:80%
+  width:90%
 }
 .Panel{
   margin: auto;
-  width: 75%;
+  width: 80%;
   background-color:#1f1f25;
   display: flex;
   vertical-align: middle;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  transition: 0.5s; 
+  height: 100%;
+  /* transition: 0.5s;  */
 }
 .GamePanelArea{
   background-color: rgb(0, 0, 0);
@@ -48,8 +49,8 @@
 }
 .Tile{
   position: relative;
-  width:19vh;
-  height: 19vh;
+  width:15vw;
+  height: 15vw;
   margin: 3px;
   display: flex;
   vertical-align: middle;
@@ -61,7 +62,7 @@
   z-index: 0;
 }
 .TileContent{
-  font-size: 12vh;
+  font-size: 8vw;
   margin: auto;
   font-weight: 900;
   font-family: 'Varela Round', sans-serif;
