@@ -11,7 +11,8 @@ class Board extends Component{
             tiles:Array(9).fill(null),
             player: 1, //multiplayer or single player
             depth:9,
-            nextSymbol:'O' //who starts
+            nextSymbol:'O',
+            starter:1
         }
         this.handleClickMultiPlayer=this.handleClickMultiPlayer.bind(this)
         this.handleClickSinglePlayer=this.handleClickSinglePlayer.bind(this)
@@ -22,13 +23,12 @@ class Board extends Component{
             if(this.state.tiles[i]!==null)
                 f=1
         }
-        if(this.state.nextSymbol=='X' && f!=1){
+        if(this.state.nextSymbol=='X' && f!=1 && this.state.player==1){
             let x=Math.floor(Math.random()*8)
             let tilesNew=[...this.state.tiles]
             tilesNew[x]='X'
             this.setState({
-                tiles:tilesNew,
-                nextSymbol:'X'
+                tiles:tilesNew
             })
         }
     }
@@ -106,6 +106,7 @@ class Board extends Component{
         if(name==="player"){
             this.NewGame()
         }
+        console.log(name+" "+value)
     }
     NewGame(){
         this.setState({
@@ -123,7 +124,7 @@ class Board extends Component{
                <div className='Game'>
                    <Row style={{height:"100vh"}}>
                    <Col lg={4} md={12} className="GamePanelArea">
-                       <GamePanel handleChange={(event)=>this.handleChange(event)} showHint={()=>this.showHint()} NewGame={()=>this.NewGame()}/>
+                       <GamePanel handleChange={(event)=>this.handleChange(event)} showHint={()=>this.showHint()} NewGame={()=>this.NewGame()} board={this.state}/>
                    </Col>
                     <Col lg={8} md={12} className="GameBoardArea">
                         <div className='Board'>

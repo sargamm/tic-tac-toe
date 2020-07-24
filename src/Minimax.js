@@ -97,7 +97,7 @@ function getOptimalMove(board, player,maxDepth){
 
             let score = ans[0]
             let dpos = ans[1]
-
+            console.log(ans+" "+pos)
             if(score===bestScore && dpos<depth){
                 bestScore = score;
                 depth = dpos;
@@ -129,7 +129,7 @@ function getOptimalMove(board, player,maxDepth){
 
             let score = ans[0]
             let dpos = ans[1]
-
+            console.log(ans+" "+pos)
             if(score===bestScore && dpos<depth){
                 bestScore = score;
                 depth = dpos;
@@ -149,7 +149,7 @@ function getOptimalMove(board, player,maxDepth){
 }
 
 function minimax(curr, depth, isMax, maxDepth){
-    // console.log(depth+"*"+maxDepth)
+    // console.log(depth+"*"+curr)
     let score = [value(curr), depth];
     if(depth==maxDepth)
        return score
