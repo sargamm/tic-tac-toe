@@ -19,5 +19,5 @@ To run the application use:
 npm start
 ```
 
-# Implementing Minimax algorithm
-TicTacToe is the main driver class
+# About the Application
+This is an unwinnable tic tac toe game when played at the maximum level of difficulty. Available in both single player and multiplayer modes, the game also gives you an option of using hints and levels of difficulty. The app is up and running at https://sargamm.github.io/tic-tac-toe/. Happy Gaming!
