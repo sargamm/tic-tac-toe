@@ -181,11 +181,12 @@ function minimax(curr, depth, isMax, maxDepth){
             if(val[0]>best){
                 best = val[0];
                 dis = val[1];
-            }else if(val[0]===best && val[1]<dis){
-                best = val[0];
-                dis = val[1];
-            }
-
+            }else if(val[0]===best){
+                if((best==-15 && val[1]>dis)||(best!=-15 && val[1]<dis)){
+                    best = val[0];
+                    dis = val[1];
+                }
+            } 
             // best = Math.max(best, minimax(possibility, depth+1, !isMax));
         }
         return [best, dis];
@@ -204,10 +205,12 @@ function minimax(curr, depth, isMax, maxDepth){
             if(val[0]<best){
                 best = val[0];
                 dis = val[1];
-            }else if(val[0]===best && val[1]<dis){
-                best = val[0];
-                dis = val[1];
-            }
+            }else if(val[0]===best){
+                if((best==15 && val[1]>dis)||(best!=15 && val[1]<dis)){
+                    best = val[0];
+                    dis = val[1];
+                }
+            } 
 
             // best = Math.min(best, minimax(possibility, depth+1, !isMax));
 
